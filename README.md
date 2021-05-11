@@ -3,21 +3,21 @@
 Purpose: handle marina leasing services
 Stack: dotnet5, razor pages. entity framework
 
-##Requirements
+## Requirements
 
-###Public Pages:
+### Public Pages:
 - Home page
 - Available slips, by location and dock. publicly available
 - Contact Us page with location, addresses, and phone #s. publicly available
 - Registration page
 - Login page
 
-###Pages Requiring Authentication
+### Pages Requiring Authentication
 - Lease slip page: diplay existing leases and create new ones
 - Register boat page: register new boat(s) and update existing
 - User page to update personal info
 
-###Web Service Requirements
+### Web Service Requirements
 AddCustomer: The first name, last name, phone number and city will be passed
 into this method and the record inserted. A string result is returned containing the
 newly created identity id or an error message.
