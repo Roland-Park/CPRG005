@@ -11,9 +11,9 @@ namespace CPRG005.Final.BLL.Repositories
 {
     public interface IRepositoryBase<T> where T : Entity
     {
-        Task<T> Create(T entity);
+        Task<string> Create(T entity);
         Task<int> Delete(int id);
-        Task<T> Edit(int? id, T entity);
+        Task<string> Edit(int? id, T entity);
         Task<List<T>> GetAll();
         Task<T> GetById(int? id);
     }
@@ -62,13 +62,13 @@ namespace CPRG005.Final.BLL.Repositories
             }
 
         }
-        public virtual async Task<T> Create(T entity)
+        public virtual async Task<string> Create(T entity)
         {
             try
             {
                 context.Add(entity);
                 var entityId = await context.SaveChangesAsync();
-                return await GetById(entity.Id);
+                return entity.Id.ToString();
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace CPRG005.Final.BLL.Repositories
             }
 
         }
-        public virtual async Task<T> Edit(int? id, T entity)
+        public virtual async Task<string> Edit(int? id, T entity)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace CPRG005.Final.BLL.Repositories
                 {
                     context.Update(entity);
                     var entityId = await context.SaveChangesAsync();
-                    return await GetById(entityId);
+                    return "Success";
                 }
                 catch (DbUpdateConcurrencyException)
                 {

@@ -1,3 +1,4 @@
+using CPRG005.Final.BLL.Repositories;
 using CPRG005.Final.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,15 @@ namespace CPRG005.Final.Api
             services.AddDbContext<MarinaDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
+            services.AddScoped<IBoatRepository, BoatRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IDockRepository, DockRepository>();
+            services.AddScoped<ILeaseRepository, LeaseRepository>();
+            services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<ISlipRepository, SlipRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

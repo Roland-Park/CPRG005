@@ -4,15 +4,15 @@ using Microsoft.Extensions.Logging;
 
 namespace CPRG005.Final.BLL.Repositories
 {
-    public interface ICustomerRepository : IRepositoryBase<Customer>
+    public interface IDockRepository : IRepositoryBase<Dock>
     {
 
     }
-    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class DockRepository : RepositoryBase<Dock>, IDockRepository
     {
         private readonly MarinaDbContext context;
-        private readonly ILogger<Customer> logger;
-        public CustomerRepository(MarinaDbContext context, ILogger<Customer> logger) : base(context, logger)
+        private readonly ILogger<Dock> logger;
+        public DockRepository(MarinaDbContext context, ILogger<Dock> logger) : base(context, logger)
         {
             this.context = context;
             this.logger = logger;

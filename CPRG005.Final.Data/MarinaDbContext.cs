@@ -12,15 +12,15 @@ namespace CPRG005.Final.Data
         public DbSet<Lease> Leases { get; set; }
         public DbSet<LeaseType> LeaseTypes { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<Slip> Slips { get; set; }
+        public DbSet<Authorize> Slips { get; set; }
         public MarinaDbContext(DbContextOptions<MarinaDbContext> options) : base(options){ }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LeaseType>().HasData(
                 new LeaseType() { Id = 1, Name = "Student", StandardRateAmount = 200.00m },
-                new LeaseType() { Id = 2, Name = "Parent" },
-                new LeaseType() { Id = 3, Name = "Tutor" },
-                new LeaseType() { Id = 4, Name = "Admin" }
+                new LeaseType() { Id = 2, Name = "Parent", StandardRateAmount = 200.00m },
+                new LeaseType() { Id = 3, Name = "Tutor", StandardRateAmount = 200.00m },
+                new LeaseType() { Id = 4, Name = "Admin", StandardRateAmount = 200.00m }
                 );
         }
     }
