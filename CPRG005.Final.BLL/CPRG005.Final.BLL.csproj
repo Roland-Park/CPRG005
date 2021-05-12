@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPRG005.Final.Data\CPRG005.Final.Data.csproj" />
+    <ProjectReference Include="..\CPRG005.Final.Domain\CPRG005.Final.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
