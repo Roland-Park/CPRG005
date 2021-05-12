@@ -17,10 +17,9 @@ namespace CPRG005.Final.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LeaseType>().HasData(
-                new LeaseType() { Id = 1, Name = "Student", StandardRateAmount = 200.00m },
-                new LeaseType() { Id = 2, Name = "Parent", StandardRateAmount = 200.00m },
-                new LeaseType() { Id = 3, Name = "Tutor", StandardRateAmount = 200.00m },
-                new LeaseType() { Id = 4, Name = "Admin", StandardRateAmount = 200.00m }
+                new LeaseType() { Id = 1, Name = "Daily", StandardRateAmount = 20.00m },
+                new LeaseType() { Id = 2, Name = "Monthly", StandardRateAmount = 200.00m },
+                new LeaseType() { Id = 3, Name = "Yearly", StandardRateAmount = 2000.00m }
                 );
         }
     }
