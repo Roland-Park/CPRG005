@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CPRG005.Final.Domain.Entities
 {
@@ -10,6 +11,8 @@ namespace CPRG005.Final.Domain.Entities
         int CustomerId { get; set; }
         int LeaseTypeId { get; set; }
     }
+
+    [Table("Leases")]
     public class Lease : Entity, ILease
     {
         public DateTime StartDate { get; set; }
@@ -21,6 +24,7 @@ namespace CPRG005.Final.Domain.Entities
         #region Navigation properties
         public Customer Customer { get; set; }
         public LeaseType LeaseType { get; set; }
+        public Slip Slip { get; set; }
         #endregion
     }
 }

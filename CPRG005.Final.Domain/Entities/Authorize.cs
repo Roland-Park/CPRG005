@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CPRG005.Final.Domain.Entities
 {
     public interface IAuthorize : IEntity
@@ -7,6 +9,8 @@ namespace CPRG005.Final.Domain.Entities
         string Password { get; set; }
         int CustomerId { get; set; }
     }
+
+    [Table("Authorizations")]
     public class Authorize : Entity, IAuthorize
     {
         public string UserName { get; set; }

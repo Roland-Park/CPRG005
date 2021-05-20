@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CPRG005.Final.Domain.Entities
 {
     public interface ISlip : IEntity
@@ -7,6 +9,8 @@ namespace CPRG005.Final.Domain.Entities
         int Length { get; set; }
         int DockId { get; set; }
     }
+
+    [Table("Slips")]
     public class Slip : Entity, ISlip
     {
         public int Width { get; set; }

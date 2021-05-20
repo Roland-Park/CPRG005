@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CPRG005.Final.Domain.Entities
 {
     public interface ICustomer : IEntity
@@ -8,6 +10,8 @@ namespace CPRG005.Final.Domain.Entities
         string Phone { get; set; }
         string City { get; set; }
     }
+
+    [Table("Customers")]
     public class Customer : Entity, ICustomer
     {
         public string FirstName { get; set; }

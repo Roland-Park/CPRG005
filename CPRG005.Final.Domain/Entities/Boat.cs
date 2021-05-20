@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CPRG005.Final.Domain.Entities
 {
     public interface IBoat : IEntity
@@ -9,6 +11,8 @@ namespace CPRG005.Final.Domain.Entities
         int Length { get; set; }
         int CustomerId { get; set; }
     }
+
+    [Table("Boats")]
     public class Boat : Entity, IBoat
     {
         public string RegistrationNumber { get; set; }

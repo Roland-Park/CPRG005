@@ -38,7 +38,7 @@ namespace CPRG005.Final.Api.Controllers
             return model;
         }
 
-        [HttpPut("{model}")]
+        [HttpPut]
         public async Task<string> UpdateCustomer([FromBody] CustomerDisplayViewModel model)
         {
             var customer = mapper.Map<Customer>(model);
@@ -47,7 +47,7 @@ namespace CPRG005.Final.Api.Controllers
             return successMessage;
         }
 
-        [HttpPost("{model}")]
+        [HttpPost]
         public async Task<string> AddCustomer([FromBody] CustomerDisplayViewModel model)
         {
             var customer = mapper.Map<Customer>(model);

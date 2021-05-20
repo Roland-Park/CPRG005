@@ -19,7 +19,7 @@ namespace CPRG005.Final.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPut("{model}")]
+        [HttpPut]
         public async Task<string> UpdateAuthorize([FromBody] AuthorizeDisplayViewModel model)
         {
             var authorization = mapper.Map<Authorize>(model);
@@ -28,7 +28,7 @@ namespace CPRG005.Final.Api.Controllers
             return successMessage;
         }
 
-        [HttpPost("{model}")]
+        [HttpPost]
         public async Task<string> AddAuthorize([FromBody] AuthorizeDisplayViewModel model)
         {
             var authorization = mapper.Map<Authorize>(model);
@@ -38,7 +38,7 @@ namespace CPRG005.Final.Api.Controllers
         }
 
         [HttpGet("{username}/{password}")]
-        public async Task<AuthorizeDisplayViewModel> Authorize([FromBody] string username, string password)
+        public async Task<AuthorizeDisplayViewModel> Authorize(string username, string password)
         {
             var authorization = await authorizeRepository.GetForCredentials(username, password);
             var model = mapper.Map<AuthorizeDisplayViewModel>(authorization);

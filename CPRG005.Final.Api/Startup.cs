@@ -22,10 +22,6 @@ namespace CPRG005.Final.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MarinaDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
             services.AddScoped<IBoatRepository, BoatRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -34,6 +30,12 @@ namespace CPRG005.Final.Api
             services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<ISlipRepository, SlipRepository>();
+
+            services.AddDbContext<MarinaDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

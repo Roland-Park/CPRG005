@@ -16,6 +16,8 @@ namespace CPRG005.Final.Data
         public MarinaDbContext(DbContextOptions<MarinaDbContext> options) : base(options){ }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<LeaseType>().HasData(
                 new LeaseType() { Id = 1, Name = "Daily", StandardRateAmount = 20.00m },
                 new LeaseType() { Id = 2, Name = "Monthly", StandardRateAmount = 200.00m },

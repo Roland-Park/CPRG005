@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CPRG005.Final.Domain.Entities
 {
     public interface IDock : IEntity
@@ -8,6 +10,8 @@ namespace CPRG005.Final.Domain.Entities
         bool HasWaterService { get; set; }
         bool HasElectricService { get; set; }
     }
+
+    [Table("Docks")]
     public class Dock : Entity, IDock
     {
         public string Name { get; set; }
