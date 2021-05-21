@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,6 +10,7 @@ namespace CPRG005.Final.Roland.Helpers
 {
     public interface IHttpHelper<T> where T : IEntity
     {
+        string BaseUrl { get; set; }
         Task<List<T>> GetAllAsync();
         Task<T> GetAsync(int id);
         Task<string> PostAsync(T entity);
@@ -21,17 +21,13 @@ namespace CPRG005.Final.Roland.Helpers
 
     public class HttpHelper<T> : IHttpHelper<T> where T : Entity
     {
-        private string baseUrl;
-        public HttpHelper(string baseUrl)
-        {
-            this.baseUrl = baseUrl;
-        }
+        public string BaseUrl { get; set; }
 
         public async Task<int> DeleteAsync(int id)
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync($"{baseUrl}/{id}"))
+                using (var response = await httpClient.DeleteAsync($"{BaseUrl}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<int>(apiResponse);
@@ -43,7 +39,7 @@ namespace CPRG005.Final.Roland.Helpers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{baseUrl}"))
+                using (var response = await httpClient.GetAsync($"{BaseUrl}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<List<T>>(apiResponse);
@@ -55,7 +51,7 @@ namespace CPRG005.Final.Roland.Helpers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{baseUrl}/{id}"))
+                using (var response = await httpClient.GetAsync($"{BaseUrl}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(apiResponse);
@@ -72,7 +68,7 @@ namespace CPRG005.Final.Roland.Helpers
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.PostAsync($"{baseUrl}", byteContent))
+                using (var response = await httpClient.PostAsync($"{BaseUrl}", byteContent))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<string>(apiResponse);
@@ -89,7 +85,7 @@ namespace CPRG005.Final.Roland.Helpers
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.PostAsync($"{baseUrl}/{id}", byteContent))
+                using (var response = await httpClient.PostAsync($"{BaseUrl}/{id}", byteContent))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<string>(apiResponse);
