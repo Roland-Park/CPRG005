@@ -19,7 +19,7 @@ namespace CPRG005.Final.Api.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<IEnumerable<LeaseTypeDisplayViewModel>> GetAllDocks()
+        public async Task<IEnumerable<LeaseTypeDisplayViewModel>> GetAllLeases()
         {
             var leaseTypes = await leaseTypeRepository.GetAll();
             var model = mapper.Map<List<LeaseTypeDisplayViewModel>>(leaseTypes);

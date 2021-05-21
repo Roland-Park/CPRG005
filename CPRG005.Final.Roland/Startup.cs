@@ -23,7 +23,10 @@ namespace CPRG005.Final.Roland
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var marinaUri = Configuration.GetValue<string>("MarinaApiBaseUrl");
+
             services.AddRazorPages();
+            services.AddHttpClient("MarinaApi", c => c.BaseAddress = new Uri(marinaUri));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
