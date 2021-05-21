@@ -3,20 +3,27 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>
+    
+<div class="logoImageDiv"><img class="logoImage" src="~/images/logo.jpg" /></div>
+<div class="jumbotron">
+    <p class="lead">
         Welcome to Inland Marina, which is located on the south shore of Inland Lake, Arizona,
         just a small commute from major centers in the southwest.
     </p>
+    <hr class="my-4">
     <p>
         Inland Marina was established in the 1967 shortly after Inland Lake was created as a
         result of the South West dam. From its humble beginnings, it has grown to be the largest
         marina on Inland Lake. Due to the warm climate that extends year round, Inland Lake
         has become a popular tourist destination in the southwest. Boat owners from California,
-        Arizona, Nevada and Utah are attracted to the area. Inland Marina has 150 slips ranging
-        in size from 16 to 28 feet in length. Dock services include electrical and fresh water
+        Arizona, Nevada and Utah are attracted to the area.
+    </p>
+    <p>
+        Inland Marina has 150 slips ranging
+        in size from 16 to 28 feet in length. Dock services include electrical and fresh water.
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Login">Log In</a>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Signup">Sign Up</a>
     </p>
 </div>
