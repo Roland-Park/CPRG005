@@ -1,4 +1,5 @@
 using CPRG005.Final.BLL.Repositories;
+using CPRG005.Final.BLL.Services;
 using CPRG005.Final.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,9 @@ namespace CPRG005.Final.Api
             services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<ISlipRepository, SlipRepository>();
+
+            services.AddScoped<IHashingService, HashingService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddDbContext<MarinaDbContext>(options =>
                 options.UseSqlServer(

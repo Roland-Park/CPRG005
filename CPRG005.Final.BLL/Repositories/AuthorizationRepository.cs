@@ -10,6 +10,7 @@ namespace CPRG005.Final.BLL.Repositories
 {
     public interface IAuthorizationRepository : IRepositoryBase<Authorize>
     {
+        Task<Authorize> GetByUserName(string userName);
         Task<Authorize> GetForCredentials(string username, string password);
     }
 
@@ -21,6 +22,11 @@ namespace CPRG005.Final.BLL.Repositories
         {
             this.context = context;
             this.logger = logger;
+        }
+
+        public async Task<Authorize> GetByUserName(string userName)
+        {
+            return await context.Set<Authorize>().FirstOrDefaultAsync(x => x.UserName == userName);
         }
 
         public async Task<Authorize> GetForCredentials(string username, string password)

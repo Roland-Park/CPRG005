@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CPRG005.Final.BLL.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,9 @@ namespace CPRG005.Final.Roland
 
             services.AddRazorPages();
             services.AddHttpClient("MarinaApi", c => c.BaseAddress = new Uri(marinaUri));
+
+            services.AddScoped<IHashingService, HashingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

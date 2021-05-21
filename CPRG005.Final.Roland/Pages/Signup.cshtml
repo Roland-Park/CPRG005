@@ -3,19 +3,27 @@
 @{
 }
 SIGN UP
-<form>
+<form method="post">
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <input class="form-control" id="exampleInputEmail1" placeholder="Username" asp-for="UserName" />
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Password" asp-for="Password">
     </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="form-group">
+        <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Confirm Password" asp-for="PasswordConfirm">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <input class="form-control" id="exampleInputEmail1" placeholder="First Name" asp-for="FirstName">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="exampleInputEmail1" placeholder="Last Name" asp-for="LastName">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="exampleInputEmail1" placeholder="Phone" asp-for="Phone">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="exampleInputPassword1" placeholder="City" asp-for="City">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>

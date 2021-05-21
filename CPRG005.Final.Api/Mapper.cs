@@ -18,11 +18,17 @@ namespace CPRG005.Final.Api
             CreateMap<Authorize, AuthorizeDisplayViewModel>();
             CreateMap<AuthorizeDisplayViewModel, Authorize>();
 
+            CreateMap<AuthorizeCreateViewModel, Authorize>();
+            CreateMap<Authorize, AuthorizeCreateViewModel>();
+
             CreateMap<Boat, BoatDisplayViewModel>();
             CreateMap<BoatDisplayViewModel, Boat>();
 
             CreateMap<Customer, CustomerDisplayViewModel>();
             CreateMap<CustomerDisplayViewModel, Customer>();
+            
+            CreateMap<Customer, CustomerCreateViewModel>();
+            CreateMap<CustomerCreateViewModel, Customer>();
 
             CreateMap<Dock, DockDisplayViewModel>();
             CreateMap<DockDisplayViewModel, Dock>();
