@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using CPRG005.Final.Roland.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -27,7 +28,7 @@ namespace CPRG005.Final.Roland.Pages
             var client = clientFactory.CreateClient("MarinaApi");
             try
             {
-                var x = await client.GetFromJsonAsync<List<User>>("leaseType");
+                var x = await client.GetFromJsonAsync<List<LeaseType>>("leaseType");
                 return Page();
             }
             catch(Exception ex)
@@ -35,12 +36,5 @@ namespace CPRG005.Final.Roland.Pages
                 throw new Exception(ex.Message);
             }
         }
-    }
-
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal StandardRateAmount { get; set; }
     }
 }
