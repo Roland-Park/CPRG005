@@ -1,7 +1,46 @@
 ﻿@page
 @model CPRG005.Final.Roland.Pages.LeaseModel
+@using CPRG005.Final.Roland.Models
 @{
 }
 <form method="post">
-    <input type="submit"/>
+    <input type="submit" />
 </form>
+
+<p>
+    A lease slip page: Once authenticated, users are taken to the leasing page
+    where current lease information is displayed and where new leases can be
+    created. Users can lease one or more slips on any dock at any location. If users
+    not already logged in, they are automatically redirected to the login page.
+</p>
+
+@if (Model.Leases.Count < 1)
+{
+    <h6>No leases to display.</h6>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Slip</th>
+                <th scope="col">Lease Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Lease lease in Model.Leases)
+            {
+                <tr>
+                    <th scope="row">@lease.Id</th>
+                    <td>@lease.StartDate</td>
+                    <td>@lease.EndDate</td>
+                    <td>@lease.SlipId</td> @*//TODO: make a viewmodel for this*@
+                    <td>@lease.LeaseTypeId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

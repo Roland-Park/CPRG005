@@ -1,0 +1,32 @@
+﻿@page
+@model CPRG005.Final.Roland.Pages.AccountModel
+@{
+    <form method="post">
+        <div class="form-group">
+            <label for="UserName">Username</label>
+            <input class="form-control" id="UserName" value="@Model.UserName" asp-for="UserName" />
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" id="Password" placeholder="Password" asp-for="Password">
+        </div>
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input class="form-control" id="FirstName" value="@Model.FirstName" asp-for="FirstName">
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input class="form-control" id="LastName" value="@Model.LastName" asp-for="LastName">
+        </div>
+        <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input class="form-control" id="Phone" value="@Model.Phone" asp-for="Phone">
+        </div>
+        <div class="form-group">
+            <label for="City">City</label>
+            <input class="form-control" id="City" value="@Model.City" asp-for="City">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+}

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using CPRG005.Final.Roland.Helpers;
 using CPRG005.Final.Roland.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,26 +15,33 @@ namespace CPRG005.Final.Roland.Pages
     public class LeaseModel : PageModel
     {
         private IHttpClientFactory clientFactory;
-        public LeaseModel(IHttpClientFactory clientFactory)
+        private ISessionHelper sessionHelper;
+        public List<Lease> Leases { get; set; }
+        public LeaseModel(IHttpClientFactory clientFactory, ISessionHelper sessionHelper)
         {
             this.clientFactory = clientFactory;
+            this.sessionHelper = sessionHelper;
+            Leases = new List<Lease>();
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            var client = clientFactory.CreateClient("MarinaApi");
-            try
+            if (!sessionHelper.IsLoggedIn)
             {
-                var x = await client.GetFromJsonAsync<List<LeaseType>>("leaseType");
-                return Page();
+                return RedirectToPage("./Login");
             }
-            catch(Exception ex)
+            else
             {
-                throw new Exception(ex.Message);
+                var client = clientFactory.CreateClient("MarinaApi");
+                try
+                {
+                    var leases = await client.GetFromJsonAsync<List<Lease>>("lease");
+                    return Page();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
         }
     }
