@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using CPRG005.Final.Roland.Helpers
+@inject ISessionHelper session
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,7 +33,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Lease">Leases</a>
                         </li>
-                    </ul>
+                        <span style="width: 50%; float: right;"></span>
+                        @if (session.IsLoggedIn)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Signup">Sign Up</a>
+                            </li>
+                        }
+                    </ul>                    
                 </div>
             </div>
         </nav>

@@ -10,8 +10,4 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CPRG005.Final.BLL\CPRG005.Final.BLL.csproj" />
-  </ItemGroup>
-
 </Project>

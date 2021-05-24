@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CPRG005.Final.BLL.Services;
+using CPRG005.Final.Roland.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,7 +25,8 @@ namespace CPRG005.Final.Roland
             services.AddRazorPages();
             services.AddHttpClient("MarinaApi", c => c.BaseAddress = new Uri(marinaUri));
 
-            services.AddScoped<IHashingService, HashingService>();
+            services.AddScoped<IHashingHelper, HashingHelper>();
+            services.AddSingleton<ISessionHelper, SessionHelper>();
 
         }
 
@@ -51,8 +48,6 @@ namespace CPRG005.Final.Roland
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

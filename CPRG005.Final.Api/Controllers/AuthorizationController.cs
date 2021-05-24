@@ -39,10 +39,10 @@ namespace CPRG005.Final.Api.Controllers
                 if (authorization == null)
                     return BadRequest("That username does not exist");
 
-                if (hashingService.Check(authorization.Password, loginModel.Password))
+                if (hashingService.CheckHash(authorization.Password, loginModel.Password))
                 {
                     var tokenString = tokenService.CreateToken(authorization);
-                    return Ok(new { Token = tokenString });
+                    return Ok(new { Token = tokenString, UserId = authorization.CustomerId  });
                 }
                 else
                 {

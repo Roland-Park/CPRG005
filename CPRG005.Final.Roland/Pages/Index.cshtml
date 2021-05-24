@@ -1,9 +1,11 @@
 ﻿@page
 @model IndexModel
+@using CPRG005.Final.Roland.Helpers
+@inject ISessionHelper session
 @{
     ViewData["Title"] = "Home page";
 }
-    
+
 <div class="logoImageDiv"><img class="logoImage" src="~/images/logo.jpg" /></div>
 <div class="jumbotron">
     <p class="lead">
@@ -22,8 +24,12 @@
         Inland Marina has 150 slips ranging
         in size from 16 to 28 feet in length. Dock services include electrical and fresh water.
     </p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Login">Log In</a>
-        <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Signup">Sign Up</a>
-    </p>
+    @if (!session.IsLoggedIn)
+    {
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Login">Log In</a>
+            <a class="btn btn-primary btn-lg" asp-area="" asp-page="/Signup">Sign Up</a>
+        </p>
+    }
+
 </div>

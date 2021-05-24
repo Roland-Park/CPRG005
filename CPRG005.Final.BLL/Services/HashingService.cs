@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
 
@@ -7,43 +6,19 @@ namespace CPRG005.Final.BLL.Services
 {
     public interface IHashingService
     {
-        string Hash(string password);
-        bool Check(string hash, string password);
+        bool CheckHash(string hash, string password);
     }
 
     /// <summary>
     /// Plagarism note
-    /// I honestly don't remember where I found this code snippet, but it was some tutorial on jwt tokens.
+    /// I honestly don't remember where I found this code snippet, but it was some tutorial on hashing.
     /// I didn't write this from scratch, although I did modify it a bit.
     /// </summary>
     public sealed class HashingService : IHashingService
     {
-        private const int SaltSize = 16; // 128 bit 
         private const int KeySize = 32; // 256 bit
 
-        public HashingService(IOptions<HashingOptions> options)
-        {
-            Options = options.Value;
-        }
-
-        private HashingOptions Options { get; }
-
-        public string Hash(string password)
-        {
-            using (var algorithm = new Rfc2898DeriveBytes(
-              password,
-              SaltSize,
-              Options.Iterations,
-              HashAlgorithmName.SHA512))
-            {
-                var key = Convert.ToBase64String(algorithm.GetBytes(KeySize));
-                var salt = Convert.ToBase64String(algorithm.Salt);
-
-                return $"{Options.Iterations}.{salt}.{key}";
-            }
-        }
-
-        public bool Check(string hash, string password)
+        public bool CheckHash(string hash, string password)
         {
             var parts = hash.Split('.', 3);
 
@@ -70,10 +45,5 @@ namespace CPRG005.Final.BLL.Services
                 return verified;
             }
         }
-    }
-
-    public sealed class HashingOptions
-    {
-        public int Iterations { get; set; } = 10000;
     }
 }

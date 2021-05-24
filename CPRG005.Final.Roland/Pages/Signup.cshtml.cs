@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using CPRG005.Final.BLL.Services;
+using CPRG005.Final.Roland.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -13,7 +13,7 @@ namespace CPRG005.Final.Roland.Pages
     public class SignupModel : PageModel
     {
         private IHttpClientFactory clientFactory;
-        private IHashingService hashingService;
+        private IHashingHelper hashingHelper;
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is required")]
@@ -39,10 +39,10 @@ namespace CPRG005.Final.Roland.Pages
 
         public string Phone { get; set; }
         public string City { get; set; }
-        public SignupModel(IHttpClientFactory clientFactory, IHashingService hashingService)
+        public SignupModel(IHttpClientFactory clientFactory, IHashingHelper hashingHelper)
         {
             this.clientFactory = clientFactory;
-            this.hashingService = hashingService;
+            this.hashingHelper = hashingHelper;
         }
         public void OnGet()
         {
@@ -73,7 +73,7 @@ namespace CPRG005.Final.Roland.Pages
             var authorization = new AuthorizeCreationViewModel
             {
                 UserName = UserName,
-                Password = hashingService.Hash(Password),
+                Password = hashingHelper.Hash(Password),
                 Customer = customer
             };
 
