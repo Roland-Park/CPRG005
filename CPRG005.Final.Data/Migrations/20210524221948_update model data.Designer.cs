@@ -4,14 +4,16 @@ using CPRG005.Final.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CPRG005.Final.Data.Migrations
 {
     [DbContext(typeof(MarinaDbContext))]
-    partial class MarinaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210524221948_update model data")]
+    partial class updatemodeldata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

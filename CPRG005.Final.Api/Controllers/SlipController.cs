@@ -26,5 +26,15 @@ namespace CPRG005.Final.Api.Controllers
             var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
             return model;
         }
+
+        [HttpGet]
+        public async Task<List<SlipDisplayViewModel>> GetAllAvailableSlips()
+        {
+            var slips = await slipRepository.GetAll(); //TODO: make this return all available slips
+            var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
+            return model;
+        }
+
+        //TODO: get slips by location
     }
 }

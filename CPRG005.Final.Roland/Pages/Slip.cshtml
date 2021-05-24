@@ -1,9 +1,39 @@
 ﻿@page
 @model CPRG005.Final.Roland.Pages.SlipModel
+@using CPRG005.Final.Roland.Models
 @{
     <h1>List OF SLIPS</h1>
     <p>
         A page that shows available slip by location and dock. This is a browsing page
         available to the general public
     </p>
+
+    @if (Model.Slips.Count < 1)
+    {
+        <h6>No leases to display.</h6>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Width (ft)</th>
+                    <th scope="col">Length (ft)</th>
+                    <th scope="col">DockId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Slip slip in Model.Slips)
+                {
+                    <tr>
+                        <th scope="row">@slip.Id</th>
+                        <td>@slip.Width</td>
+                        <td>@slip.Length</td>
+                        <td>@slip.DockId</td> @*//TODO: make a viewmodel for this*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }

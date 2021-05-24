@@ -36,6 +36,7 @@ namespace CPRG005.Final.Roland.Pages
                 try
                 {
                     var leases = await client.GetFromJsonAsync<List<Lease>>("lease");
+                    Leases.AddRange(leases);
                     return Page();
                 }
                 catch (Exception ex)
