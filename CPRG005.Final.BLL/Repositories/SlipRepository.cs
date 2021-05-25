@@ -11,6 +11,8 @@ namespace CPRG005.Final.BLL.Repositories
     public interface ISlipRepository : IRepositoryBase<Slip>
     {
         Task<List<Slip>> GetAvailableSlipsByDockId(int dockId);
+        Task<List<Slip>> GetAvailableSlipsByLocationId(int locationId);
+        Task<List<Slip>> GetAvailableSlips();
     }
     public class SlipRepository : RepositoryBase<Slip>, ISlipRepository
     {
@@ -29,11 +31,39 @@ namespace CPRG005.Final.BLL.Repositories
 
             foreach(var lease in leases)
             {
-                unavailableSlipIds.Add(lease.Id);
+                unavailableSlipIds.Add(lease.SlipId);
             }
 
-            var slipsForDock = await context.Set<Slip>().Where(x => x.DockId == dockId).ToListAsync();
+            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.DockId == dockId).ToListAsync();
             return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();            
+        }
+
+        public async Task<List<Slip>> GetAvailableSlipsByLocationId(int locationId)
+        {
+            var leases = await context.Set<Lease>().ToListAsync();
+            var unavailableSlipIds = new List<int>();
+
+            foreach (var lease in leases)
+            {
+                unavailableSlipIds.Add(lease.SlipId);
+            }
+
+            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.Dock.LocationId == locationId).ToListAsync();
+            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
+        }
+
+        public async Task<List<Slip>> GetAvailableSlips()
+        {
+            var leases = await context.Set<Lease>().ToListAsync();
+            var unavailableSlipIds = new List<int>();
+
+            foreach (var lease in leases)
+            {
+                unavailableSlipIds.Add(lease.SlipId);
+            }
+
+            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).ToListAsync();
+            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
         }
     }
 }

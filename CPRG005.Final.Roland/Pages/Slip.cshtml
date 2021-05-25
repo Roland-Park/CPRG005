@@ -2,11 +2,21 @@
 @model CPRG005.Final.Roland.Pages.SlipModel
 @using CPRG005.Final.Roland.Models
 @{
-    <h1>List OF SLIPS</h1>
-    <p>
-        A page that shows available slip by location and dock. This is a browsing page
-        available to the general public
-    </p>
+    <div class="filters">
+        <select class="filterOptions" id="locationOptionsSelectList">
+            @foreach (Location location in Model.Locations)
+            {
+                <option value="@location.Id">@location.Name</option>
+            }
+        </select>
+
+        <select class="filterOptions" id="dockOptionsSelectList">
+            @foreach (Dock dock in Model.Docks)
+            {
+                <option value="@dock.Id">@dock.Name</option>
+            }
+        </select>
+    </div>
 
     @if (Model.Slips.Count < 1)
     {
@@ -18,22 +28,52 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Dock</th>
                     <th scope="col">Width (ft)</th>
                     <th scope="col">Length (ft)</th>
-                    <th scope="col">DockId</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Slip slip in Model.Slips)
                 {
                     <tr>
-                        <th scope="row">@slip.Id</th>
+                        <th scope="row">@Model.IdFormat(slip.Id)</th>
+                        <td>@slip.Dock.Location.Name</td>
+                        <td>@slip.Dock.Name</td>
                         <td>@slip.Width</td>
                         <td>@slip.Length</td>
-                        <td>@slip.DockId</td> @*//TODO: make a viewmodel for this*@
                     </tr>
                 }
             </tbody>
         </table>
     }
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    var dockSelectList = $("#dockOptionsSelectList");
+    var locSelectList = $("#locationOptionsSelectList");
+    var url = 'https://localhost:44363/' + 'slip/';
+
+    dockSelectList.change(function () {
+        var dockId = dockSelectList.find(":selected").val();
+        if (dockId < 0) {
+            return;
+        }
+        $.get(url + "dock/" + dockId, function (data) {
+            console.log(data);
+        });
+    });
+
+    locSelectList.change(function () {
+        var locId = locSelectList.find(":selected").val();
+        if (locId < 0) {
+            return;
+        }
+        $.get(url + "loc/" + locId, function (data) {
+            console.log(data);
+        });
+    });
+</script>

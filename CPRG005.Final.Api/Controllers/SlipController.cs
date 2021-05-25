@@ -19,7 +19,15 @@ namespace CPRG005.Final.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("{dockId}")]
+        [HttpGet("loc/{locationId}")]
+        public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByLocationId(int locationId)
+        {
+            var slips = await slipRepository.GetAvailableSlipsByLocationId(locationId);
+            var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
+            return model;
+        }
+
+        [HttpGet("dock/{dockId}")]
         public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByDockId(int dockId)
         {
             var slips = await slipRepository.GetAvailableSlipsByDockId(dockId);
@@ -30,11 +38,9 @@ namespace CPRG005.Final.Api.Controllers
         [HttpGet]
         public async Task<List<SlipDisplayViewModel>> GetAllAvailableSlips()
         {
-            var slips = await slipRepository.GetAll(); //TODO: make this return all available slips
+            var slips = await slipRepository.GetAvailableSlips();
             var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
             return model;
         }
-
-        //TODO: get slips by location
     }
 }
