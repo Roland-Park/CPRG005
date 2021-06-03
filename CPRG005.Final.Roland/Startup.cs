@@ -22,6 +22,7 @@ namespace CPRG005.Final.Roland
         {
             var marinaUri = Configuration.GetValue<string>("MarinaApiBaseUrl");
 
+            services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddHttpClient("MarinaApi", c => c.BaseAddress = new Uri(marinaUri));
 
@@ -52,6 +53,13 @@ namespace CPRG005.Final.Roland
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Asset}/{action=Index}/{id?}");
             });
         }
     }

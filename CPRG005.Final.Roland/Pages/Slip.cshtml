@@ -18,62 +18,39 @@
         </select>
     </div>
 
-    @if (Model.Slips.Count < 1)
-    {
-        <h6>No leases to display.</h6>
-    }
-    else
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Dock</th>
-                    <th scope="col">Width (ft)</th>
-                    <th scope="col">Length (ft)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Slip slip in Model.Slips)
-                {
-                    <tr>
-                        <th scope="row">@Model.IdFormat(slip.Id)</th>
-                        <td>@slip.Dock.Location.Name</td>
-                        <td>@slip.Dock.Name</td>
-                        <td>@slip.Width</td>
-                        <td>@slip.Length</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    <div id="results"></div>
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
 <script>
-    var dockSelectList = $("#dockOptionsSelectList");
-    var locSelectList = $("#locationOptionsSelectList");
-    var url = 'https://localhost:44363/' + 'slip/';
+    loadSlips(0, 0);
+    $(document).ready(function () {
+        $('#locationOptionsSelectList').change(function () {
+            filterByParameters();
+        });
 
-    dockSelectList.change(function () {
-        var dockId = dockSelectList.find(":selected").val();
-        if (dockId < 0) {
-            return;
-        }
-        $.get(url + "dock/" + dockId, function (data) {
-            console.log(data);
+        $('#dockOptionsSelectList').change(function () {
+            filterByParameters();
         });
     });
 
-    locSelectList.change(function () {
-        var locId = locSelectList.find(":selected").val();
-        if (locId < 0) {
-            return;
-        }
-        $.get(url + "loc/" + locId, function (data) {
-            console.log(data);
+    function filterByParameters() {
+        var locationId = $('#locationOptionsSelectList').val();
+        var dockId = $('#dockOptionsSelectList').val();
+        loadSlips(locationId, dockId);
+    }
+
+    function loadSlips(locationId, dockId) {
+        console.log(locationId);
+        console.log(dockId);
+
+        $.ajax({
+            url: "/FilterBySlip/GetSlipsForParameters",
+            type: "GET",
+            data: { locationId: locationId, dockId: dockId }
+        }).done(function (data) {
+            $('#results').html(data)
         });
-    });
+    }
 </script>

@@ -10,6 +10,7 @@ namespace CPRG005.Final.BLL.Repositories
 {
     public interface ISlipRepository : IRepositoryBase<Slip>
     {
+        Task<List<Slip>> GetAvailableSlipsByDockAndLocation(int locationId, int dockId);
         Task<List<Slip>> GetAvailableSlipsByDockId(int dockId);
         Task<List<Slip>> GetAvailableSlipsByLocationId(int locationId);
         Task<List<Slip>> GetAvailableSlips();
@@ -24,7 +25,15 @@ namespace CPRG005.Final.BLL.Repositories
             this.logger = logger;
         }
 
-        public async  Task<List<Slip>> GetAvailableSlipsByDockId(int dockId)
+        public async Task<List<Slip>> GetAvailableSlips()
+        {
+            var unavailableSlipIds = await GetUnavailableSlipIds();
+
+            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).ToListAsync();
+            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
+        }
+
+        public async Task<List<Slip>> GetAvailableSlipsByDockId(int dockId)
         {
             var leases = await context.Set<Lease>().ToListAsync();
             var unavailableSlipIds = new List<int>();
@@ -34,8 +43,8 @@ namespace CPRG005.Final.BLL.Repositories
                 unavailableSlipIds.Add(lease.SlipId);
             }
 
-            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.DockId == dockId).ToListAsync();
-            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();            
+            var slips = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.DockId == dockId).ToListAsync();
+            return slips.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
         }
 
         public async Task<List<Slip>> GetAvailableSlipsByLocationId(int locationId)
@@ -48,11 +57,19 @@ namespace CPRG005.Final.BLL.Repositories
                 unavailableSlipIds.Add(lease.SlipId);
             }
 
-            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.Dock.LocationId == locationId).ToListAsync();
-            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
+            var slips = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.Dock.LocationId == locationId).ToListAsync();
+            return slips.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
         }
 
-        public async Task<List<Slip>> GetAvailableSlips()
+        public async Task<List<Slip>> GetAvailableSlipsByDockAndLocation(int locationId, int dockId)
+        {
+            var unavailableSlipIds = await GetUnavailableSlipIds();
+
+            var slips = await context.Set<Slip>().Include(x => x.Dock.Location).Where(x => x.Dock.LocationId == locationId && x.DockId == dockId).ToListAsync();
+            return slips.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
+        }
+
+        private async Task<List<int>> GetUnavailableSlipIds()
         {
             var leases = await context.Set<Lease>().ToListAsync();
             var unavailableSlipIds = new List<int>();
@@ -62,8 +79,7 @@ namespace CPRG005.Final.BLL.Repositories
                 unavailableSlipIds.Add(lease.SlipId);
             }
 
-            var slipsForDock = await context.Set<Slip>().Include(x => x.Dock.Location).ToListAsync();
-            return slipsForDock.Where(x => !unavailableSlipIds.Contains(x.Id)).ToList();
+            return unavailableSlipIds;
         }
     }
 }

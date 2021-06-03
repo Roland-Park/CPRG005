@@ -19,28 +19,44 @@ namespace CPRG005.Final.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("loc/{locationId}")]
-        public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByLocationId(int locationId)
-        {
-            var slips = await slipRepository.GetAvailableSlipsByLocationId(locationId);
-            var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
-            return model;
-        }
-
-        [HttpGet("dock/{dockId}")]
-        public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByDockId(int dockId)
-        {
-            var slips = await slipRepository.GetAvailableSlipsByDockId(dockId);
-            var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
-            return model;
-        }
-
         [HttpGet]
         public async Task<List<SlipDisplayViewModel>> GetAllAvailableSlips()
         {
             var slips = await slipRepository.GetAvailableSlips();
             var model = mapper.Map<List<SlipDisplayViewModel>>(slips);
             return model;
+        }
+
+        //[HttpGet("Filter/{locationId}/{dockId}")]
+        [HttpGet("Filter")]
+        public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByLocationAndDock([FromQuery]int locationId, [FromQuery] int dockId)
+        {
+            if(locationId < 0 && dockId < 0)
+            {
+                return null;
+            }
+
+            List<SlipDisplayViewModel> model;
+            if(locationId > 0 && dockId > 0)
+            {
+                var slips = await slipRepository.GetAvailableSlipsByDockAndLocation(locationId, dockId);
+                model = mapper.Map<List<SlipDisplayViewModel>>(slips);
+                return model;
+            }
+            if(locationId < 0)
+            {
+                var slips = await slipRepository.GetAvailableSlipsByDockId(dockId);
+                model = mapper.Map<List<SlipDisplayViewModel>>(slips);
+                return model;
+            }
+            if(dockId < 0)
+            {
+                var slips = await slipRepository.GetAvailableSlipsByLocationId(locationId);
+                model = mapper.Map<List<SlipDisplayViewModel>>(slips);
+                return model;
+            }
+
+            return null;
         }
     }
 }

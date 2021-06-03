@@ -1,0 +1,33 @@
+﻿@model List<CPRG005.Final.Roland.Models.Slip>
+@using CPRG005.Final.Roland.Models
+
+@if (Model.Count < 1)
+{
+    <h6>No leases to display.</h6>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Location</th>
+                <th scope="col">Dock</th>
+                <th scope="col">Width (ft)</th>
+                <th scope="col">Length (ft)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Slip slip in Model)
+            {
+                <tr>
+                    <th scope="row">@slip.Id</th>
+                    <td>@slip.Dock.Location.Name</td>
+                    <td>@slip.Dock.Name</td>
+                    <td>@slip.Width</td>
+                    <td>@slip.Length</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
