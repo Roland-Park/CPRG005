@@ -11,6 +11,7 @@ namespace CPRG005.Final.Roland.ViewModels
         public string Manufacturer { get; set; }
         [Display(Name= "Model Year")]
         public int ModelYear { get; set; }
+        [Display(Name= "Length (ft)")]
         public int Length { get; set; }
     }
 }

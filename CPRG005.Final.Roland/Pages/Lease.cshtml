@@ -16,7 +16,6 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Slip#</th>
@@ -27,7 +26,6 @@ else
             @foreach (Lease lease in Model.Leases)
             {
                 <tr>
-                    <th scope="row">@lease.Id</th>
                     <td>@lease.StartDate</td>
                     <td>@lease.EndDate</td>
                     <td>@lease.SlipId</td>
