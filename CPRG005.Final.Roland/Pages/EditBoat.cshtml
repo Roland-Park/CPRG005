@@ -1,0 +1,61 @@
+﻿@page
+@model CPRG005.Final.Roland.Pages.EditBoatModel
+@{
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" id="boatId" asp-for="FormData.BoatId" class="form-control" />
+
+                <div class="form-group">
+                    <label asp-for="FormData.ModelYear" class="control-label"></label>
+                    <select id="year" asp-for="FormData.ModelYear" asp-items="Model.Years" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.RegistrationNumber" class="control-label"></label>
+                    <input id="reg" asp-for="FormData.RegistrationNumber" class="form-control" />
+                    <span asp-validation-for="FormData.RegistrationNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.Manufacturer" class="control-label"></label>
+                    <input id="manu" asp-for="FormData.Manufacturer" class="form-control" />
+                    <span asp-validation-for="FormData.Manufacturer" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.Length" class="control-label"></label>
+                    <select id="length" asp-for="FormData.Length" asp-items="Model.Lengths" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <input id="update" type="submit" value="Update Boat" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#year').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#reg').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#manu').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#length').change(function () {
+            $('#update').prop('disabled', false)
+        });
+
+        $('#update').prop('disabled', true);
+    });
+</script>

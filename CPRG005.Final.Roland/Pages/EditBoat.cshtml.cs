@@ -6,7 +6,6 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using CPRG005.Final.Roland.Factories;
 using CPRG005.Final.Roland.Helpers;
-using CPRG005.Final.Roland.Models;
 using CPRG005.Final.Roland.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CPRG005.Final.Roland.Pages
 {
-    public class CreateBoatModel : PageModel
+    public class EditBoatModel : PageModel
     {
         private IHttpClientFactory clientFactory;
         private ISessionHelper sessionHelper;
@@ -25,14 +24,16 @@ namespace CPRG005.Final.Roland.Pages
         public SelectList Years;
         public SelectList Lengths;
         [BindProperty]
-        public CreateBoatViewModel FormData { get; set; }
-        public CreateBoatModel(IHttpClientFactory clientFactory, ISessionHelper sessionHelper, IBoatFactory boatFactory)
+        public EditBoatViewModel FormData { get; set; }
+
+        public EditBoatModel(IHttpClientFactory clientFactory, ISessionHelper sessionHelper, IBoatFactory boatFactory)
         {
+            FormData = new EditBoatViewModel();
             this.clientFactory = clientFactory;
             this.sessionHelper = sessionHelper;
             this.boatFactory = boatFactory;
         }
-        public IActionResult OnGet()
+        public IActionResult OnGet(string id, string reg, string manu, string year, string length)
         {
             if (!sessionHelper.IsLoggedIn)
             {
@@ -40,12 +41,16 @@ namespace CPRG005.Final.Roland.Pages
             }
             else
             {
+                FormData.BoatId = int.Parse(id);
+                FormData.RegistrationNumber = reg;
+                FormData.Manufacturer = manu;
+                FormData.ModelYear = int.Parse(year);
+                FormData.Length = int.Parse(length);
                 Years = new SelectList(CreateModelYears(), currentYear);
                 Lengths = new SelectList(CreateLengths(), minLength);
                 return Page();
-            }
+            }            
         }
-
         public async Task<IActionResult> OnPostAsync()
         {
             if (!sessionHelper.IsLoggedIn)
@@ -60,10 +65,10 @@ namespace CPRG005.Final.Roland.Pages
 
             try
             {
-                var boat = boatFactory.Build(FormData, sessionHelper.UserId);
+                var boat = boatFactory.BuildForEdit(FormData, sessionHelper.UserId);
 
                 var client = clientFactory.CreateClient("MarinaApi");
-                await client.PostAsJsonAsync("Boat", boat);
+                await client.PutAsJsonAsync("Boat", boat);
                 return RedirectToPage("./Boat");
             }
             catch (Exception ex)
@@ -71,11 +76,10 @@ namespace CPRG005.Final.Roland.Pages
                 throw new Exception(ex.Message);
             }
         }
-
         private List<int> CreateModelYears()
         {
-            var years = new List<int>();            
-            for(int i = currentYear; i >= currentYear - 60; i--)
+            var years = new List<int>();
+            for (int i = currentYear; i >= currentYear - 60; i--)
             {
                 years.Add(i);
             }
@@ -86,7 +90,7 @@ namespace CPRG005.Final.Roland.Pages
         private List<int> CreateLengths()
         {
             var lengths = new List<int>();
-            for(int i = minLength; i <= maxLength; i++)
+            for (int i = minLength; i <= maxLength; i++)
             {
                 lengths.Add(i);
             }

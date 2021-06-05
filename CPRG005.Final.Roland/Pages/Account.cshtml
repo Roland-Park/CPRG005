@@ -2,31 +2,54 @@
 @model CPRG005.Final.Roland.Pages.AccountModel
 @{
     <form method="post">
+        <input type="hidden" id="boatId" asp-for="FormData.Id" class="form-control" />
         <div class="form-group">
             <label for="UserName">Username</label>
-            <input class="form-control" id="UserName" value="@Model.UserName" asp-for="UserName" />
+            <input class="form-control" id="UserName" value="@Model.FormData.UserName" asp-for="FormData.UserName" readonly />
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
-            <input type="password" class="form-control" id="Password" placeholder="Password" asp-for="Password">
+            <input type="password" class="form-control" id="Password" placeholder="Password" asp-for="FormData.Password" readonly>
         </div>
         <div class="form-group">
             <label for="FirstName">First Name</label>
-            <input class="form-control" id="FirstName" value="@Model.FirstName" asp-for="FirstName">
+            <input class="form-control" id="FirstName" value="@Model.FormData.FirstName" asp-for="FormData.FirstName">
         </div>
         <div class="form-group">
             <label for="LastName">Last Name</label>
-            <input class="form-control" id="LastName" value="@Model.LastName" asp-for="LastName">
+            <input class="form-control" id="LastName" value="@Model.FormData.LastName" asp-for="FormData.LastName">
         </div>
         <div class="form-group">
             <label for="Phone">Phone</label>
-            <input class="form-control" id="Phone" value="@Model.Phone" asp-for="Phone">
+            <input class="form-control" id="Phone" value="@Model.FormData.Phone" asp-for="FormData.Phone">
         </div>
         <div class="form-group">
             <label for="City">City</label>
-            <input class="form-control" id="City" value="@Model.City" asp-for="City">
+            <input class="form-control" id="City" value="@Model.FormData.City" asp-for="FormData.City">
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button id="update" type="submit" class="btn btn-primary">Update</button>
     </form>
 
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#FirstName').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#LastName').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#Phone').change(function () {
+            $('#update').prop('disabled', false)
+        });
+        $('#City').change(function () {
+            $('#update').prop('disabled', false)
+        });
+
+        $('#update').prop('disabled', true);
+    });
+</script>

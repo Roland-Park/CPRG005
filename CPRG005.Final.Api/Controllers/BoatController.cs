@@ -29,7 +29,7 @@ namespace CPRG005.Final.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<string> UpdateCustomer([FromBody] BoatDisplayViewModel model)
+        public async Task<string> UpdateBoat([FromBody] BoatDisplayViewModel model)
         {
             var customer = mapper.Map<Boat>(model);
             var successMessage = await boatRepository.Edit(customer.Id, customer);
@@ -38,12 +38,20 @@ namespace CPRG005.Final.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<string> AddCustomer([FromBody] BoatDisplayViewModel model)
+        public async Task<string> AddBoat([FromBody] BoatDisplayViewModel model)
         {
             var customer = mapper.Map<Boat>(model);
             var successMessage = await boatRepository.Create(customer);
 
             return successMessage;
+        }
+
+        [HttpDelete("{boatId}")]
+        public async Task<string> DeleteBoat(int boatId)
+        {
+            var successMessage = await boatRepository.Delete(boatId);
+
+            return successMessage.ToString();
         }
     }
 }

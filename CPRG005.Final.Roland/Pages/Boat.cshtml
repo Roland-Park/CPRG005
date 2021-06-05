@@ -2,13 +2,8 @@
 @model CPRG005.Final.Roland.Pages.BoatModel
 @using CPRG005.Final.Roland.Models
 @{
-    <h1>LIST OF BOATS</h1>
-    <p>
-        A register boat page where authenticated users can register one or more boats
-        as well as update their boat information
-    </p>
 
-    <a class="btn btn-primary btn-lg" asp-area="" asp-page="/CreateBoat">Register New Boat</a>
+    <a class="btn btn-primary btn-lg" asp-area="" asp-page="/CreateBoat">New Boat</a>
     <br />
 
     @if (Model.Boats.Count < 1)
@@ -29,13 +24,21 @@
             <tbody>
                 @foreach (Boat boat in Model.Boats)
                 {
-                    <tr>
-                        <td>@boat.RegistrationNumber</td>
-                        <td>@boat.Manufacturer</td>
-                        <td>@boat.ModelYear</td>
-                        <td>@boat.Length</td>
-                        <td><a asp-page="EditBoat" asp-route-id="@boat.Id">Edit</a></td>
-                    </tr>
+                <tr>
+                    <td>@boat.RegistrationNumber</td>
+                    <td>@boat.Manufacturer</td>
+                    <td>@boat.ModelYear</td>
+                    <td>@boat.Length</td>
+                    <td>
+                        <a asp-page="EditBoat"
+                           asp-route-id="@boat.Id"
+                           asp-route-reg="@boat.RegistrationNumber"
+                           asp-route-manu="@boat.Manufacturer"
+                           asp-route-year="@boat.ModelYear"
+                           asp-route-length="@boat.Length">Edit</a> |
+                        <a asp-page="DeleteBoat" asp-route-id="@boat.Id">Delete</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

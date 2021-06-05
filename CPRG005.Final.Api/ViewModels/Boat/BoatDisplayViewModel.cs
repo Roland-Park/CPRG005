@@ -4,6 +4,7 @@ namespace CPRG005.Final.Api.ViewModels.Boat
 {
     public class BoatDisplayViewModel
     {
+        public int Id { get; set; }
         public string RegistrationNumber { get; set; }
         public string Manufacturer { get; set; }
         public int ModelYear { get; set; }

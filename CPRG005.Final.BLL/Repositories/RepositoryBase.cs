@@ -80,7 +80,7 @@ namespace CPRG005.Final.BLL.Repositories
         {
             try
             {
-                if (id != entity.Id)
+                if (id != entity.Id || id == 0 )
                     return null;
 
                 try
