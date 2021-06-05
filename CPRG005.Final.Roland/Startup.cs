@@ -1,4 +1,5 @@
 using System;
+using CPRG005.Final.Roland.Factories;
 using CPRG005.Final.Roland.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,7 @@ namespace CPRG005.Final.Roland
 
             services.AddScoped<IHashingHelper, HashingHelper>();
             services.AddSingleton<ISessionHelper, SessionHelper>();
-
+            services.AddSingleton<ILeaseFactory, LeaseFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

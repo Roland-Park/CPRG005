@@ -36,6 +36,8 @@ namespace CPRG005.Final.Api
             CreateMap<Lease, LeaseDisplayViewModel>();
             CreateMap<LeaseDisplayViewModel, Lease>();
 
+            CreateMap<LeaseCreateViewModel, Lease>();
+
             CreateMap<LeaseType, LeaseTypeDisplayViewModel>();
             CreateMap<LeaseTypeDisplayViewModel, LeaseType>();
 

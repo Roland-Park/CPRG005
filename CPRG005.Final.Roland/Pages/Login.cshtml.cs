@@ -41,7 +41,7 @@ namespace CPRG005.Final.Roland.Pages
                         var json = await response.Content.ReadAsStringAsync();
                         var authorization = JsonConvert.DeserializeObject<AuthDto>(json);
                         sessionHelper.SignIn(authorization.Token, authorization.UserId, UserName);
-                        return RedirectToPage("./Index");
+                        return RedirectToPage("./Lease");
                     }
                     else
                     {

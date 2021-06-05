@@ -31,7 +31,6 @@ namespace CPRG005.Final.BLL.Repositories
         {
             try
             {
-                var x = await context.Set<T>().ToListAsync();
                 return await context.Set<T>().ToListAsync();
             }
             catch (Exception ex)

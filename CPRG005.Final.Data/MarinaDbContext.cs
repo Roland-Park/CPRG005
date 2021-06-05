@@ -45,7 +45,7 @@ namespace CPRG005.Final.Data
                 CreateSlips(8, 18, 1, 10, 11)
                 );
             modelBuilder.Entity<Slip>().HasData(
-                CreateSlips(8, 20, 1, 10, 21)
+                CreateSlips(8, 20, 2, 10, 21)
                 );
             modelBuilder.Entity<Slip>().HasData(
                 CreateSlips(10, 22, 1, 10, 31)

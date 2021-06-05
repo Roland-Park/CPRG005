@@ -3,16 +3,9 @@
 @using CPRG005.Final.Roland.Models
 @{
 }
-<form method="post">
-    <input type="submit" />
-</form>
 
-<p>
-    A lease slip page: Once authenticated, users are taken to the leasing page
-    where current lease information is displayed and where new leases can be
-    created. Users can lease one or more slips on any dock at any location. If users
-    not already logged in, they are automatically redirected to the login page.
-</p>
+<a class="btn btn-primary btn-lg" asp-area="" asp-page="/CreateLease">New Lease</a>
+<br />
 
 @if (Model.Leases.Count < 1)
 {
@@ -26,7 +19,7 @@ else
                 <th scope="col">Id</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
-                <th scope="col">Slip</th>
+                <th scope="col">Slip#</th>
                 <th scope="col">Lease Type</th>
             </tr>
         </thead>
@@ -37,8 +30,8 @@ else
                     <th scope="row">@lease.Id</th>
                     <td>@lease.StartDate</td>
                     <td>@lease.EndDate</td>
-                    <td>@lease.SlipId</td> @*//TODO: make a viewmodel for this*@
-                    <td>@lease.LeaseTypeId</td>
+                    <td>@lease.SlipId</td>
+                    <td>@lease.LeaseType.Name</td>
                 </tr>
             }
         </tbody>

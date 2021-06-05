@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CPRG005.Final.Roland.Models
 {
@@ -13,7 +14,9 @@ namespace CPRG005.Final.Roland.Models
 
     public class Lease : Entity, ILease
     {
+        [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
+        [Display(Name="End Date")]
         public DateTime EndDate { get; set; }
         public int SlipId { get; set; }
         public int CustomerId { get; set; }

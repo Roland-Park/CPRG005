@@ -35,7 +35,7 @@ namespace CPRG005.Final.Roland.Pages
                 var client = clientFactory.CreateClient("MarinaApi");
                 try
                 {
-                    var leases = await client.GetFromJsonAsync<List<Lease>>("lease");
+                    var leases = await client.GetFromJsonAsync<List<Lease>>($"lease/{sessionHelper.UserId}");
                     Leases.AddRange(leases);
                     return Page();
                 }

@@ -27,7 +27,6 @@ namespace CPRG005.Final.Api.Controllers
             return model;
         }
 
-        //[HttpGet("Filter/{locationId}/{dockId}")]
         [HttpGet("Filter")]
         public async Task<List<SlipDisplayViewModel>> GetAvailableSlipsByLocationAndDock([FromQuery]int locationId, [FromQuery] int dockId)
         {

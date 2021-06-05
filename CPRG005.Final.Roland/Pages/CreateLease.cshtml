@@ -1,0 +1,30 @@
+﻿@page
+@model CPRG005.Final.Roland.Pages.CreateLeaseModel
+@{
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="slips" class="control-label">Slip#</label>
+                <select asp-for="FormData.SlipId" asp-items="Model.SlipSelectList" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="leases" class="control-label">Lease Type</label>
+                <select asp-for="FormData.LeaseTypeId" asp-items="Model.LeaseTypeSelectList" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FormData.Start" class="control-label"></label>
+                <input asp-for="FormData.Start" class="form-control" />
+                <span asp-validation-for="FormData.Start" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create Lease" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -43,6 +43,7 @@
                         <span style="width: 50%; float: right;"></span> @*TODO: store page redirects if a user is not logged in*@
                         @if (session.IsLoggedIn)
                         {
+                            <h6>Welcome @session.UserId @session.UserName </h6>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Account">Account</a>
                             </li>
