@@ -1,0 +1,36 @@
+﻿@page
+@model CPRG005.Final.Roland.Pages.CreateBoatModel
+@{
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FormData.ModelYear" class="control-label"></label>
+                    <select asp-for="FormData.ModelYear" asp-items="Model.Years" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.RegistrationNumber" class="control-label"></label>
+                    <input asp-for="FormData.RegistrationNumber" class="form-control" />
+                    <span asp-validation-for="FormData.RegistrationNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.Manufacturer" class="control-label"></label>
+                    <input asp-for="FormData.Manufacturer" class="form-control" />
+                    <span asp-validation-for="FormData.Manufacturer" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FormData.Length" class="control-label"></label>
+                    <select asp-for="FormData.Length" asp-items="Model.Lengths" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create Boat" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}

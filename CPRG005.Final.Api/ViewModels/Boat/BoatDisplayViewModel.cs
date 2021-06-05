@@ -8,6 +8,6 @@ namespace CPRG005.Final.Api.ViewModels.Boat
         public string Manufacturer { get; set; }
         public int ModelYear { get; set; }
         public int Length { get; set; }
-        public CustomerDisplayViewModel Customer { get; set; }
+        public int CustomerId { get; set; }
     }
 }
