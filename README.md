@@ -1,5 +1,11 @@
 # CPRG005 Final Assignment
 
+June 5 2021 TODO:
+- Form validation
+- secure api endpoints and add token to request headers
+- proofreading and testing
+
+______________________________________________________________________________
 Purpose: handle marina leasing services
 Stack: dotnet5, razor pages. entity framework
 
