@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CPRG005.Final.Roland.Helpers;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +28,7 @@ namespace CPRG005.Final.Roland.Pages
             else
             {
                 var client = clientFactory.CreateClient("MarinaApi");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionHelper.AccessToken);
                 try
                 {
                     var success = await client.DeleteAsync($"Boat/{BoatId}");

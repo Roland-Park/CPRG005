@@ -55,7 +55,7 @@ namespace CPRG005.Final.Roland.Pages
             {
                 var client = clientFactory.CreateClient("MarinaApi");
                 var response = await client.PostAsJsonAsync("authorization", authorization);
-                return Page();
+                return RedirectToPage("./Login");
             }
             catch(Exception ex)
             {

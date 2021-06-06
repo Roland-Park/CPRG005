@@ -2,6 +2,7 @@
 using CPRG005.Final.Api.ViewModels.Boat;
 using CPRG005.Final.BLL.Repositories;
 using CPRG005.Final.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace CPRG005.Final.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class BoatController : ControllerBase
     {
         private readonly IBoatRepository boatRepository;

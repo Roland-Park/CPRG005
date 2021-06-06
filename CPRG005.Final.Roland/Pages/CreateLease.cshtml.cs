@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using CPRG005.Final.Roland.Factories;
@@ -42,6 +43,7 @@ namespace CPRG005.Final.Roland.Pages
             else
             {
                 var client = clientFactory.CreateClient("MarinaApi");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionHelper.AccessToken);
                 try
                 {
                     var slips = await client.GetFromJsonAsync<List<Slip>>("Slip");
@@ -76,6 +78,7 @@ namespace CPRG005.Final.Roland.Pages
                 var lease = leaseFactory.Build(FormData, sessionHelper.UserId);
 
                 var client = clientFactory.CreateClient("MarinaApi");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionHelper.AccessToken);
                 await client.PostAsJsonAsync("Lease", lease);
                 return RedirectToPage("./Lease");
             }

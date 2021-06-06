@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using CPRG005.Final.Roland.Factories;
@@ -68,6 +68,7 @@ namespace CPRG005.Final.Roland.Pages
                 var boat = boatFactory.BuildForEdit(FormData, sessionHelper.UserId);
 
                 var client = clientFactory.CreateClient("MarinaApi");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionHelper.AccessToken);
                 await client.PutAsJsonAsync("Boat", boat);
                 return RedirectToPage("./Boat");
             }
