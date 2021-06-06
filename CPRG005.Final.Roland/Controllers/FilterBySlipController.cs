@@ -25,7 +25,7 @@ namespace CPRG005.Final.Roland.Controllers
         {
             var client = clientFactory.CreateClient("MarinaApi");
 
-            if(locationId == 0 && dockId == 0)
+            if((locationId == 0 && dockId == 0) || (locationId == -1 && dockId == -1))
             {
                 var allSlips = await client.GetFromJsonAsync<List<Slip>>("slip");
                 return PartialView("_GetFilteredSlips", allSlips.ToList());

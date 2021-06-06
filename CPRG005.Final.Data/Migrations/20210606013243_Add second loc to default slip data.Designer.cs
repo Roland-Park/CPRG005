@@ -4,14 +4,16 @@ using CPRG005.Final.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CPRG005.Final.Data.Migrations
 {
     [DbContext(typeof(MarinaDbContext))]
-    partial class MarinaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210606013243_Add second loc to default slip data")]
+    partial class Addsecondloctodefaultslipdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,7 +163,7 @@ namespace CPRG005.Final.Data.Migrations
                             Id = 3,
                             HasElectricService = false,
                             HasWaterService = false,
-                            LocationId = 2,
+                            LocationId = 1,
                             Name = "Dock C"
                         });
                 });
@@ -447,70 +449,70 @@ namespace CPRG005.Final.Data.Migrations
                         new
                         {
                             Id = 21,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 22,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 23,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 24,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 25,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 26,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 27,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 28,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 29,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },
                         new
                         {
                             Id = 30,
-                            DockId = 1,
+                            DockId = 2,
                             Length = 20,
                             Width = 8
                         },

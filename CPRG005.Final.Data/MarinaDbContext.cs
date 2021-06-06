@@ -35,7 +35,7 @@ namespace CPRG005.Final.Data
             modelBuilder.Entity<Dock>().HasData(
                 new Dock() { Id = 1, LocationId = 1, Name = "Dock A", HasWaterService = true, HasElectricService = true},
                 new Dock() { Id = 2, LocationId = 1, Name = "Dock B", HasWaterService = true, HasElectricService = false},
-                new Dock() { Id = 3, LocationId = 1, Name = "Dock C", HasWaterService = false, HasElectricService = false }
+                new Dock() { Id = 3, LocationId = 2, Name = "Dock C", HasWaterService = false, HasElectricService = false }
                 );
 
             modelBuilder.Entity<Slip>().HasData(
@@ -45,7 +45,7 @@ namespace CPRG005.Final.Data
                 CreateSlips(8, 18, 1, 10, 11)
                 );
             modelBuilder.Entity<Slip>().HasData(
-                CreateSlips(8, 20, 2, 10, 21)
+                CreateSlips(8, 20, 1, 10, 21)
                 );
             modelBuilder.Entity<Slip>().HasData(
                 CreateSlips(10, 22, 1, 10, 31)
