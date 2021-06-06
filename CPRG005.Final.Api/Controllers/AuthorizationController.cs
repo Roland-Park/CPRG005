@@ -3,7 +3,6 @@ using CPRG005.Final.Api.ViewModels.Authorize;
 using CPRG005.Final.BLL.Repositories;
 using CPRG005.Final.BLL.Services;
 using CPRG005.Final.Domain.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
