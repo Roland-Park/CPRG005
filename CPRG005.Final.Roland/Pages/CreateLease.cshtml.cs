@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -21,7 +20,6 @@ namespace CPRG005.Final.Roland.Pages
         private ILeaseFactory leaseFactory;
         public SelectList SlipSelectList { get; set; }
         public SelectList LeaseTypeSelectList { get; set; }
-        //public DateTimePicker dateTimePicker { get; set; }
         [BindProperty]
         public CreateLeaseViewModel FormData { get; set; }
         public CreateLeaseModel(IHttpClientFactory clientFactory, ISessionHelper sessionHelper, ILeaseFactory leaseFactory)

@@ -2,27 +2,47 @@
 @model CPRG005.Final.Roland.Pages.SignupModel
 @{
 }
-<form method="post">
-    <div class="form-group">
-        <input class="form-control" id="exampleInputEmail1" placeholder="Username" asp-for="UserName" />
+<div class="row">
+    <div class="col-md-4">
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FormData.UserName" class="control-label"></label>
+                <input asp-for="FormData.UserName" class="form-control" id="UserName" placeholder="Username"/>
+                <span asp-validation-for="FormData.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.Password" class="control-label"></label>
+                <input type="password" class="form-control" id="Password" placeholder="Password" asp-for="FormData.Password">
+                <span asp-validation-for="FormData.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.PasswordConfirm" class="control-label"></label>
+                <input type="password" class="form-control" id="PasswordConfirm" placeholder="Confirm Password" asp-for="FormData.PasswordConfirm">
+                <span asp-validation-for="FormData.PasswordConfirm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.FirstName" class="control-label"></label>
+                <input class="form-control" id="FirstName" placeholder="First Name" asp-for="FormData.FirstName">
+                <span asp-validation-for="FormData.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.LastName" class="control-label"></label>
+                <input class="form-control" id="LastName" placeholder="Last Name" asp-for="FormData.LastName">
+                <span asp-validation-for="FormData.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.Phone" class="control-label"></label>
+                <input class="form-control" id="Phone" placeholder="Phone" asp-for="FormData.Phone">
+                <span asp-validation-for="FormData.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormData.City" class="control-label"></label>
+                <input class="form-control" id="City" placeholder="City" asp-for="FormData.City">
+                <span asp-validation-for="FormData.City" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
     </div>
-    <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Password" asp-for="Password">
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Confirm Password" asp-for="PasswordConfirm">
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="exampleInputEmail1" placeholder="First Name" asp-for="FirstName">
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="exampleInputEmail1" placeholder="Last Name" asp-for="LastName">
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="exampleInputEmail1" placeholder="Phone" asp-for="Phone">
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="exampleInputPassword1" placeholder="City" asp-for="City">
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+</div>
