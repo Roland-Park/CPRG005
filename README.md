@@ -1,7 +1,8 @@
 # CPRG005 Final Assignment
 ______________________________________________________________________________
-Purpose: handle marina leasing services
-Stack: dotnet5, razor pages. entity framework
+CPRG005.Final.Api is a web api
+CPRG005.Final.Roland is a razor pages app that consumes the api
+run update-database first
 
 ## Requirements
 
